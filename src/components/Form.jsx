@@ -2,9 +2,13 @@ import React, { useContext } from 'react';
 import { TodoContext } from '../context/TodoContext';
 
 const Form = () => {
-  const { setInputValue, inputValue, todos, setTodos } = useContext(
-    TodoContext
-  );
+  const {
+    setInputValue,
+    inputValue,
+    todos,
+    setTodos,
+    setFilterBy,
+  } = useContext(TodoContext);
 
   const handleChange = (e) => {
     setInputValue(e.target.value);
@@ -19,6 +23,10 @@ const Form = () => {
     setInputValue('');
   };
 
+  const handleFilterChange = (e) => {
+    setFilterBy(e.target.value);
+  };
+
   return (
     <form onSubmit={handleSubmit}>
       <input
@@ -31,7 +39,11 @@ const Form = () => {
         <i className="fas fa-plus-square"></i>
       </button>
       <div className="select">
-        <select name="todos" className="filter-todo">
+        <select
+          onChange={handleFilterChange}
+          name="todos"
+          className="filter-todo"
+        >
           <option value="all">All</option>
           <option value="completed">Completed</option>
           <option value="uncompleted">Uncompleted</option>

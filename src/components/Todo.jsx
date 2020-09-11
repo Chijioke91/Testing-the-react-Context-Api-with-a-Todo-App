@@ -6,7 +6,9 @@ const Todo = ({ todo }) => {
 
   return (
     <div className="todo">
-      <li className="todo-item">{todo.text}</li>
+      <li className={`todo-item ${todo.completed && 'completed'}`}>
+        {todo.text}
+      </li>
       <button className="complete-btn" onClick={() => todoComplete(todo.id)}>
         <i className="fas fa-check"></i>
       </button>
